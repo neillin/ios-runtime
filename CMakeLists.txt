@@ -9,7 +9,10 @@ if(CCACHE_FOUND AND USE_CCACHE)
   MESSAGE( STATUS "## Using CCache when building!")
   set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ${CCACHE_FOUND})
   set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ${CCACHE_FOUND})
-endif(CCACHE_FOUND AND USE_CCACHE)
+  set(NATIVESCRIPT_USE_PREFIX_HEADER "NO") # TODO: figure out how to enable precompilation without breaking ccache
+else()
+  set(NATIVESCRIPT_USE_PREFIX_HEADER "YES")
+endif()
 
 project(NativeScript)
 
